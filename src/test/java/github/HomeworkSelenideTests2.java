@@ -1,5 +1,6 @@
 package github;
 
+import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
@@ -16,8 +17,13 @@ public class HomeworkSelenideTests2 {
         $(".header-menu-wrapper").parent().$(byText("Solutions")).hover();
         $(byText("Enterprise")).click();
         $(".enterprise-hero").shouldHave(text("GitHub for enterprises"));
+    }
 
-
-
+    @Test
+    void dragAndDrop() {
+        open("https://the-internet.herokuapp.com/drag_and_drop");
+        $("#column-a").dragAndDropTo("#column-b");
+        $("#column-a").shouldHave(text("B"));
+        $("#column-b").shouldHave(text("A"));
     }
 }
